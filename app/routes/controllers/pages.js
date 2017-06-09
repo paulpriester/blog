@@ -1,5 +1,5 @@
 var auth = require("../../auth/local-signup");
-var Post = require("../../models/blogModel");
+var Post = require("../../models/blogpost");
 
 var pages =  {
 	home: function(req, res) {
@@ -62,6 +62,6 @@ var pages =  {
 	
 
 
-};
+
 
 module.exports = pages;

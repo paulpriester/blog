@@ -27,7 +27,7 @@ var blogPages = {
 		res.render("create", {
 			user: req.user.username
 		});
-	};
+	},
 
 	update: function(req, res) {
 		Post.findOne({"_id": req.query.post}, function(err, post) {
@@ -48,7 +48,7 @@ var blogPages = {
 
 
 
-var newPost = function createBlogPost(req, res) {
+var newPost = function (req, res) {
 	new post ({
 		title: req.body.blogTitle,
 		post: req.body.postBody,
@@ -90,9 +90,9 @@ function deleteBlogPost(req, res) {
 }
 
 
-exports = createBlogPost;
-exports = updateBlogPost;
-exports = deleteBlogPost;
+exports.create = newPost;
+exports.update = updateBlogPost;
+exports.delete = deleteBlogPost;
 
-exports.createPage = blogPages.create,
+exports.createPage = blogPages.create;
 exports.updatePage = blogPages.update;

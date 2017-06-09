@@ -2,6 +2,7 @@ var express = require("express"),
 	mongoose = require("mongoose"),
 	bodyParser = require("body-parser"),
 	hbs = require("hbs"),
+	methodOverride = require("method-override")
 	passport = require("passport"),
 	bcrypt = require("bcrypt-nodejs"),
 	session = require("express-session"),
@@ -19,6 +20,12 @@ app.use("/static", express.static(path.join(__dirname, "app/client")));
 app.set("views", path.join(__dirname, "app/views"));
 //linking the view folder to the index.js with a symbolic link name "views".
 
+
+// app.use(session({
+
+// }))
+
+app.use(methodOverride('_mehtod'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 

@@ -12,12 +12,12 @@ var Blogpost = new mongoose.Schema({
 	user: String,
 	comments: [
 		{
-			comment: String.
+			comment: String,
 			user: String
 		}
 	]
 
 });
 
-module.exports = mongoose.model("posts", blogpost);
+module.exports = mongoose.model("posts", Blogpost);
 //blogpost name of the schema. "posts" is the name of the model.

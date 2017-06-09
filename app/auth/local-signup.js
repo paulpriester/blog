@@ -1,4 +1,4 @@
-var bcrypt = require("bcrypt.nodejs"),
+var bcrypt = require("bcrypt-nodejs"),
 	User = require("../models/userModel");
 
 module.exports = function(user, callback) {					
@@ -9,7 +9,7 @@ module.exports = function(user, callback) {
 		firstName: user.first,
 		lastName: user.last,
 		createdAt: new Date().toLocaleDateString()
-	}).save(function(err)(){
+	}).save(function(err){
 		if(err){
 			callback({
 				"success": false,
