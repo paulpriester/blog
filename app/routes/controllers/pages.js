@@ -7,7 +7,7 @@ var pages =  {
 	},
 
 	index: function(req, res) {
-		BlogPost.find({"user": req.user.username}, function(err, post) {
+		Post.find({"user": req.user.username}, function(err, post) {
 			if(err) {
 				console.log(err);
 			} else {
@@ -48,7 +48,7 @@ var pages =  {
 	},
 
 	post: function(req, res){
-		Posts.findOne({"_id": req.query.p}, function(err, post) {
+		Post.findOne({"_id": req.query.p}, function(err, post) {
 			if (err) {
 				console.log(err);
 			} else {

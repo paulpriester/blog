@@ -1,5 +1,5 @@
 var localStrategy = require("passport-local").Strategy,
-	User = require("../models/user"),
+	User = require("../models/userModel"),
 	bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(passport){
@@ -10,10 +10,10 @@ module.exports = function(passport){
 		done(null, id);
 	});
 
-	passport.use("local login", new LocalStrategy({
+	passport.use("local-login", new localStrategy({
 		usernameField:"username",
-		passportField:"password",
-		pasReqToCallback: true
+		passwordField:"password",
+		passReqToCallback: true
 	}, function(request, username, password, done){
 		User.findOne({username:username}, function(err, user){
 			if(err){

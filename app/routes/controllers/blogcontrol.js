@@ -4,7 +4,7 @@ var post = require("../../models/blogpost.js");
 function today(){
 	var date = new Date();
 	var day = date.getDate();
-	var moth = date.getMonth();
+	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
 
 	if (day < 10){
@@ -30,7 +30,7 @@ var blogPages = {
 	},
 
 	update: function(req, res) {
-		Post.findOne({"_id": req.query.post}, function(err, post) {
+		post.findOne({"_id": req.query.post}, function(err, post) {
 			if (err) {
 				console.log(err);
 			} else {
@@ -48,7 +48,7 @@ var blogPages = {
 
 
 
-var newPost = function (req, res) {
+ function createBlogPost(req, res) {
 	new post ({
 		title: req.body.blogTitle,
 		post: req.body.postBody,
@@ -63,13 +63,13 @@ var newPost = function (req, res) {
 			console.log(err);
 		}
 		else {
-			req.redirect("/index")
+			res.redirect("/index")
 		}
-	})
+	});
 }
 
 function updateBlogPost(req, res){
-	Post.update({"_id": req.query.id}, {$set: {"post": req.body.postBody, "title": req.body.blogTitle}}, function(err, doc){
+	post.update({"_id": req.query.id}, {$set: {"post": req.body.postBody, "title": req.body.blogTitle}}, function(err, doc){
 		console.log(doc);
 		if (err) {
 			res.redirect("/index");
@@ -80,7 +80,7 @@ function updateBlogPost(req, res){
 }
 
 function deleteBlogPost(req, res) {
-	Post.remove({"_id": req.query.post}, function(err, post){
+	post.remove({"_id": req.query.post}, function(err, post){
 		if(err){
 			console.log(err);
 		} else {
@@ -90,7 +90,7 @@ function deleteBlogPost(req, res) {
 }
 
 
-exports.create = newPost;
+exports.create = createBlogPost;
 exports.update = updateBlogPost;
 exports.delete = deleteBlogPost;
 
